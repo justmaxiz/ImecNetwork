@@ -29,14 +29,14 @@ public class MainRepository {
     private final String LOG_TAG = "MainRepository";
 
     // Конструктор репозитория
-    public MainRepository(ApiService apiService) {
-        this.apiService = NetworkClient.getInstance().create(ApiService.class);
+    public MainRepository() {
+        apiService = NetworkClient.getInstance().create(ApiService.class);
     }
 
     // Метод авторизации
-    public void login(String login, String password, Object data, NetworkCallback<AuthResponse> callback) {
+    public void login(String login, String password, NetworkCallback<AuthResponse> callback) {
         // Имплементация метода login из ApiService
-        apiService.login(new AuthRequest(login, password, null)).enqueue(new Callback<AuthResponse>() {
+        apiService.login(new AuthRequest(login, password)).enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 // При успешном запросе сохраняем токен и вызываем onSuccess
@@ -60,9 +60,9 @@ public class MainRepository {
     }
 
     // Метод регистрации
-    public void register(String email, String password, Object data, NetworkCallback<AuthResponse> callback) {
+    public void register(AuthRequest request, NetworkCallback<AuthResponse> callback) {
         // Имплементация метода register из ApiService
-        apiService.register(new AuthRequest(email, password, data)).enqueue(new Callback<AuthResponse>() {
+        apiService.register(request).enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 // При успешной регистрации сохраняем токен и вызываем onSuccess

@@ -1,3 +1,6 @@
+group = "ru.justmaxiz.saransk.network"
+version = "1.0.0"
+
 plugins {
     id("com.android.library")
 }
