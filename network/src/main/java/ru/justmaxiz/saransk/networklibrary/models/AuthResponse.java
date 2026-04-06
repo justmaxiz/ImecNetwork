@@ -1,16 +1,16 @@
 package ru.justmaxiz.saransk.networklibrary.models;
 
-import com.google.gson.annotations.SerializedName;
-
+/**
+ * Описание назначения класса: DTO класс ответа авторизации
+ * Дата создания: 02-04-2026
+ * Автор создания: 15
+ */
 public class AuthResponse {
-    @SerializedName("access_token") public String accessToken;
+    public String token; // Токен для последующих запросов
+    public String userId;
 
-    public AuthResponse(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public String getAccessToken() {
-        return accessToken;
+    public AuthResponse(String token, String userId) {
+        this.token = token;
+        this.userId = userId;
     }
 }
-
